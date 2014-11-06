@@ -26,11 +26,11 @@
                     {
                         document.documentElement.scrollTop = document.body.scrollTop = 0;
                         clearInterval(timer);
-                        bflag = true;
+                     
                     } else
                     {
                         document.documentElement.scrollTop = document.body.scrollTop = scrollTop - Math.floor((0 - scrollTop) / ispeed);
-                        bflag = false;
+                        bflag = true;
                     }
                     
                 }, 30)
@@ -38,14 +38,16 @@
             
             document.onscroll = function ()
             {
-                if (bflag)
+                if (!bflag)
                 {
+                   
                     clearInterval(timer);
                     console.info(1);
-                } else
-                {
-                    
+                } else {
+
+                    bflag = false;
                 }
+               
             }
 
         }
