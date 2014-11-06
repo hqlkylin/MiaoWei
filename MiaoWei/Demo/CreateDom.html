@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        * {  margin:0px; padding:0px;}
+    </style>
+    <script>
+        window.onload = function ()
+        {
+            var oTxt = document.getElementById("txt");
+            var oBtn = document.getElementById("btn");
+            var oUl = document.getElementById("ul1");
+
+            oBtn.onclick = function ()
+            {
+                var oLi = document.createElement("li");
+                var oA = document.createElement("a");
+                oA.innerHTML = '删除';
+                oA.href = "#";
+                oA.onclick = function ()
+                {
+                    oUl.removeChild(oLi);
+                }
+                oLi.innerHTML = oTxt.value;
+                oLi.appendChild(oA);
+                if (oUl.children < 0)
+                {
+                    oUl.appendChild(oLi);
+                }
+                oUl.insertBefore(oLi,oUl.children[0])
+                oTxt.value = "";
+            }
+
+        }
+    
+    </script>
+</head>
+<body>
+    <div>
+        <input  type="text" id="txt"/> <input type="button" id="btn" value="添加" /> 
+        <ul id="ul1"></ul>
+    </div>
+</body>
+</html>
