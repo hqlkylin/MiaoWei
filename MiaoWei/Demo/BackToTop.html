@@ -31,7 +31,6 @@
                      
                     } else
                     {
-                        console.info(scrollTop);
                         document.documentElement.scrollTop = document.body.scrollTop = scrollTop + ispeed;
                         bflag = true;
                     }
@@ -44,9 +43,7 @@
                 if (!bflag)
                 {
                     clearInterval(timer);
-                    console.info(1);
                 } else {
-
                     bflag = false;
                 }
                
