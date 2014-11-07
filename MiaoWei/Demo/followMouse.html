@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <style>
+        * {  margin:0px; padding:0px;}
+        div { width: 100px; height: 100px; background: #000000; position: absolute; left: 0px; top: 0px;}
+        #div1 { width: 100px; height: 100px; background: #ffd800; position: absolute;left:0px; top:0px; z-index:1; }
+    </style>
+    <script src="../Scripts/util.js"></script>
+    <script>
+        window.onload = function ()
+        {
+            var oDiv = document.getElementById("div1");
+            var aDiv = document.getElementsByTagName("div");
+            oDiv.onmousedown = function (ev)
+            {
+                var oEvent = window.event || ev
+                var disX = oEvent.clientX - oDiv.offsetLeft;
+                var disY = oEvent.clientY - oDiv.offsetTop;
+
+                document.onmousemove = function (ev)
+                {
+                    var oEvent = window.event || ev
+             
+                    for (var i = aDiv.length-1; i >0; i--)
+                    {
+                        aDiv[i].style.left = aDiv[i-1].style.left;
+                        aDiv[i].style.top = aDiv[i-1].style.top;
+                    }
+                    oDiv.style.left = oEvent.clientX - disX + "px";
+                    oDiv.style.top = oEvent.clientY - disY + "px";
+                }
+                document.onmouseup = function ()
+                {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+
+                    for (var i = aDiv.length - 1; i > 0; i--)
+                    {
+                        aDiv[i].style.left =  oDiv.style.left;
+                        aDiv[i].style.top = oDiv.style.top;
+                    }
+                }
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <div id="div1">
+      
+    </div>
+<div>1</div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+</body>
+</html>

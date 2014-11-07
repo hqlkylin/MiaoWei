@@ -17,19 +17,22 @@
             oBtn.onclick = function ()
             {
                 clearInterval(timer);
-                var ispeed = -5;
+               
                 timer = setInterval(function ()
                 {
                     var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                    var ispeed = Math.floor((0 - scrollTop) / 8);
 
-                    if (scrollTop <= Math.abs(ispeed))
+                    if (scrollTop ==0)
                     {
+                       
                         document.documentElement.scrollTop = document.body.scrollTop = 0;
                         clearInterval(timer);
                      
                     } else
                     {
-                        document.documentElement.scrollTop = document.body.scrollTop = scrollTop - Math.floor((0 - scrollTop) / ispeed);
+                        console.info(scrollTop);
+                        document.documentElement.scrollTop = document.body.scrollTop = scrollTop + ispeed;
                         bflag = true;
                     }
                     
@@ -40,7 +43,6 @@
             {
                 if (!bflag)
                 {
-                   
                     clearInterval(timer);
                     console.info(1);
                 } else {
