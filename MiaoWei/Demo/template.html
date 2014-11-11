@@ -5,21 +5,57 @@
     <title></title>
     <style>
         * {  margin:0px; padding:0px;}
+        #div1 { margin: 0px; padding: 0px; width: 200px; height: 100px; background: #0094ff; opacity:0.3 }
     </style>
-    <script src="../Scripts/util.js"></script>
+    <script src="../Scripts/move.js"></script>
     <script>
         window.onload = function ()
         {
 
-            console.info(common.getName());
+            var oDiv = document.getElementById("div1");
+            oDiv.onclick = function ()
+            {
+                startMove(oDiv, { "opacity": 80,"width":201 })
+            }
+
+
+            //var oDiv2 = document.getElementById("div2");
+            //var hours = new Date().getHours();
+            //if (hours == 0)
+            //{
+            //    var posx = document.documentElement.clientWidth || document.body.clientWidth;
+            //    var sTop = document.documentElement.scrollHeight || document.body.scrollHeight;
+            //    var oDiv = document.createElement("div");
+            //    oDiv.style.position = "absolute";
+            //    oDiv.style.top =0;
+            //    oDiv.style.left =0;
+            //    oDiv.style.opacity = 0.2;
+            //    oDiv.style.zIndex = 99999;
+            //    oDiv.style.background = "#808080";
+            //    oDiv.style.width = posx + "px";
+            //    oDiv.style.height = sTop+ "px";
+            //    alert("活动已结束！ 更多活动请在官网查看！");
+            //    document.body.appendChild(oDiv);
+            //    //location.href = "http://www.jimei.com.cn";
+            //} else
+            //{
+            //    oDiv2.innerHTML =  hours* 66+parseInt(oDiv2.innerHTML);
+            //}
         }
     
     </script>
 </head>
-<body>
+<body >
 
-    <div>
- 
+    <div id="div1">
     </div>
+
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br />
+    <div id="div2">100</div>
 </body>
 </html>
