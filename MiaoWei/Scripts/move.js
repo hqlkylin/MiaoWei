@@ -62,6 +62,7 @@ function startMove(obj, json, fn)
             //2.算速度
             obj.iSpeed = (json[attr] - iCur) / 8;
             obj.iSpeed = obj.iSpeed > 0 ? Math.ceil(obj.iSpeed) : Math.floor(obj.iSpeed);
+            
             if (json[attr] != iCur)
             {
                 bStop = false;

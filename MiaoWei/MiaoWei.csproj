@@ -127,11 +127,15 @@
     <Content Include="Demo\BackToTop.html" />
     <Content Include="Demo\CreateDom.html" />
     <Content Include="Demo\followMouse.html" />
+    <Content Include="Demo\图片中心放大.html" />
     <Content Include="Demo\template.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1.png" />
+    <Content Include="Images\2.jpg" />
+    <Content Include="Images\3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
