@@ -127,6 +127,7 @@
     <Content Include="Demo\BackToTop.html" />
     <Content Include="Demo\CreateDom.html" />
     <Content Include="Demo\followMouse.html" />
+    <Content Include="Demo\对象This.html" />
     <Content Include="Demo\图片中心放大.html" />
     <Content Include="Demo\template.html" />
     <Content Include="favicon.ico" />
