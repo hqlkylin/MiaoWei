@@ -1,0 +1,124 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>放大镜 - 妙味课堂 - www.miaov.com</title>
+<style type="text/css">
+
+    #div1 { width: 200px; height: 200px; padding: 5px; border: 1px solid #ccc; position: relative; }
+
+        #div1 .small_pic { width: 200px; height: 200px; background: #eee; position: relative; }
+        #div1 .float_layer { width: 50px; height: 50px; border: 1px solid #000; background: #fff; filter: alpha(opacity: 30); opacity: 0.3; position: absolute; top: 0; left: 0; display: none; }
+        #div1 .mark { width: 100%; height: 100%; position: absolute; z-index: 2; left: 0px; top: 0px; background: red; filter: alpha(opacity:0); opacity: 0; }
+        #div1 .big_pic { position: absolute; top: -1px; left: 215px; width: 250px; height: 250px; overflow: hidden; border: 2px solid #CCC; display: none; }
+            #div1 .big_pic img { position: absolute; top: -30px; left: -80px; }
+</style>
+<script type="text/javascript">
+
+
+
+    function getByClass(parent,classname)
+    {
+        var aTem = [];
+        var aElm = parent.getElementsByTagName("*");
+
+        for (var i = 0; i < aElm.length; i++)
+        {
+            if (aElm[i].className == classname)
+            {
+
+                aTem.push(aElm[i]);
+            }
+        }
+        return aTem;
+    }
+    window.onload = function ()
+    {
+        var odiv1 = document.getElementById("div1");
+        var oSmall = getByClass(odiv1, "small_pic")[0];
+        var oBig = getByClass(odiv1, "big_pic")[0];
+        var omark = getByClass(odiv1, "mark")[0];
+        var ofloat_layer = getByClass(odiv1, "float_layer")[0];
+        
+
+        omark.onmouseover = function ()
+        {
+            ofloat_layer.style.display = 'block';
+            oBig.style.display = 'block';
+        };
+
+        omark.onmouseout = function ()
+        {
+            ofloat_layer.style.display = "none";
+            oBig.style.display = "none";
+
+        }
+
+        omark.onmousemove = function (ev)
+        {
+         
+            var oEvent = ev || window.event;
+
+
+            var disX = oEvent.clientX - odiv1.offsetLeft - oSmall.offsetLeft - ofloat_layer.offsetWidth / 2;
+            var disY = oEvent.clientY - odiv1.offsetTop - oSmall.offsetTop - ofloat_layer.offsetHeight / 2;
+           
+            if (disX < 0)
+            {
+                disX = 0;
+            }
+            if (disY < 0)
+            {
+                disY = 0;
+            }
+            if (disX > omark.offsetWidth - ofloat_layer.offsetWidth)
+            {
+                disX = omark.offsetWidth - ofloat_layer.offsetWidth;
+            }
+            if (disY > omark.offsetHeight - ofloat_layer.offsetHeight)
+            {
+                disY = omark.offsetHeight - ofloat_layer.offsetHeight;
+
+            }
+
+            var l = disX / (omark.offsetWidth-ofloat_layer.offsetWidth);
+            var t = disY / (omark.offsetHeight-ofloat_layer.offsetHeight);
+
+            document.title = l + "|" + t;
+
+
+
+            ofloat_layer.style.left =disX + "px";
+            ofloat_layer.style.top = disY + "px";
+
+            var oImg = oBig.getElementsByTagName("img")[0];
+
+            oImg.style.left = -l * (oBig.offsetWidth - ofloat_layer.offsetWidth) + "px";
+            oImg.style.top = -t * (oBig.offsetHeight- ofloat_layer.offsetHeight) + "px";
+        }
+     
+
+
+    }
+
+</script>
+</head>
+
+<body>
+
+<div id="div1">
+
+    <div class="small_pic">
+		<span class="mark"></span>
+        <span class="float_layer"></span>
+        <img src="images/small.png" alt="妙味课堂 - 放大镜图片一" longdesc="http://www.miaov.com" />
+    </div>
+
+    <div class="big_pic">
+		<img src="images/big.png" alt="妙味课堂 - 放大镜图片二" longdesc="http://www.miaov.com" />
+	</div>
+
+</div>
+
+</body>
+</html>
