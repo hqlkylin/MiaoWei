@@ -18,11 +18,8 @@ window.onload=function ()
     var oNext = document.getElementById("btn_next");
     var oIocUl = document.getElementById("ico_list").getElementsByTagName("ul")[0];
     var timer = null;
-
     var icoNow = 0;
- 
     var iNow = 0; //当前点击的
-
     for (var i = 0; i < aIocLi.length; i++)
     {
         aIocLi[i].index = i;
@@ -35,8 +32,6 @@ window.onload=function ()
 
     function tab()
     {
-
-
         for (var i = 0; i < aIocLi.length; i++)
         {
             aIocLi[i].className = "";
@@ -50,50 +45,55 @@ window.onload=function ()
 
     oNext.onclick = function ()
     {
-        document.title = icoNow;
+
         if (icoNow >= aIocLi.length - 7)
         {
             return;
         }
         icoNow++;
-        startMove(oIocUl, { left: -icoNow * aIocLi[0].offsetWidth });
-        oNext.className = icoNow >= aIocLi.length - 7 ? "btn" : "btn showBtn";
-        oPrev.className = icoNow ==0? "btn" : "btn showBtn";
+        fixUlLeft();
       
     }
     oPrev.onclick = function ()
     {
-        document.title = icoNow;
+        console.info("iNow:"+iNow + "|" + icoNow);
         if (icoNow == 0)
         { 
             return;
         }
         icoNow--;
-        startMove(oIocUl, { left: -icoNow * aIocLi[0].offsetWidth });
-        oNext.className = icoNow >= aIocLi.length - 7 ? "btn" : "btn showBtn";
-        oPrev.className = icoNow == 0 ? "btn" : "btn showBtn";
+
+        fixUlLeft();
     }
    
     function autoPlay()
     {
+
+        iNow++;
         if (iNow == aIocLi.length)
         {
             iNow = 0;
         }
         tab();
-        iNow++;
-
-        //console.info(icoNow + "|" + iNow);
-        //if (iNow >= aIocLi.length - 7)
-        //{
-        //    icoNow++
-        //    startMove(oIocUl, { left: icoNow * -aIocLi[0].offsetWidth });
-        //} else
-        //{
-        //    icoNow = 0;
-        //    startMove(oIocUl, { left: 0});
-        //}
+        if (iNow < icoNow)
+        {
+            icoNow = iNow;
+        }
+        if (iNow >= icoNow+7)
+        {
+            icoNow = iNow - 6;
+        }
+     
+        fixUlLeft();
     }
+
+    function fixUlLeft()
+    {
+        startMove(oIocUl, { left: icoNow * -aIocLi[0].offsetWidth });
+        oNext.className = icoNow >= aIocLi.length - 7 ? "btn" : "btn showBtn";
+        oPrev.className = icoNow == 0 ? "btn" : "btn showBtn";
+    }
+
     timer = setInterval(autoPlay, 1000);
 
     obox.onmouseover = function ()
