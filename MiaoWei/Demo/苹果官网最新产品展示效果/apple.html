@@ -175,7 +175,27 @@ a{
         {
 
             var kylin = document.getElementById("kylin");
-            var aLi=kylin.getElementsByTagName("li")
+            var aLi = kylin.getElementsByTagName("li")
+
+            for (var i = 0; i < aLi.length; i++)
+            {
+
+                console.info(aLi[i].className);
+                if (aLi[i].className != "")
+                {
+                    aLi[i].onmouseover = function ()
+                    {
+
+                        this.className = "active";
+                    };
+
+                    aLi[i].onmouseout = function ()
+                    {
+                        this.className = "";
+                    };
+                }
+
+            }
         }
 
     </script>
