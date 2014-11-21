@@ -110,6 +110,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -259,6 +260,25 @@
     <Content Include="Demo\对象This.html" />
     <Content Include="Demo\图片中心放大.html" />
     <Content Include="Demo\template.html" />
+    <Content Include="Demo\苹果官网最新产品展示效果\apple.html" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\1.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\10.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\11.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\12.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\2.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\3.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\4.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\5.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\6.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\7.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\8.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\9.jpg" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\caret_active.gif" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\caret_active.png" />
+    <Content Include="Demo\苹果官网最新产品展示效果\img\nav_bg.png" />
+    <Content Include="Demo\苹果官网最新产品展示效果\miaov.js" />
+    <Content Include="Demo\苹果官网最新产品展示效果\关于妙味课堂.txt" />
+    <Content Include="Demo\苹果官网最新产品展示效果\效果展示.gif" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

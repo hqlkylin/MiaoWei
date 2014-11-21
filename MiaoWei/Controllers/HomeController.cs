@@ -20,7 +20,7 @@ namespace MiaoWei.Controllers
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult headList()
         {
             ViewBag.Message = "Your contact page.";
 
