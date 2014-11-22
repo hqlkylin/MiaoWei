@@ -95,6 +95,8 @@ a{
         var oPrev = oDiv.getElementsByTagName("div")[1].getElementsByTagName("a")[0];
         var oNext = oDiv.getElementsByTagName("div")[1].getElementsByTagName("a")[1];
 
+   
+
         var aLiPos=[];
 
         for (var i = 0; i < ali.length; i++)
@@ -108,27 +110,158 @@ a{
             
         }
 
+        var timer = null;
+
         oNext.onclick = function ()
         {
             var i = 0;
+            clearInterval(timer);
 
-            startMove(ali[i], { "left": -600 });
+          
 
-            var timer=setInterval(function ()
+            function next()
             {
-
-                if (i > ali.length / 2)
+                if (i <= ali.length / 2 - 1)
                 {
-                    clearInterval(timer);
-                }else{
-                    startMove(ali[i++], { "left": -600 });
+                    startMove(ali[i], { "left": -600 });
+                    timer = setTimeout(next, 100);
+                    i++;
+
+                } else
+                {
+                    timer=setTimeout(next2,100)
                 }
-            }, 500)
-    
+
+            }
+            function next2()
+            {
+                if (i <= ali.length - 1)
+                {
+                    startMove(ali[i], { "left": aLiPos[i - ali.length / 2] });
+                    timer = setTimeout(next2, 100);
+                } 
+                i++;
+            }
+
+            next();
+
+            //clearInterval(timer);
+            //var i = 1;
+            //startMove(ali[0], { "left": -600 });
+
+            //timer =setInterval(function ()
+            //{
+            //    startMove(ali[i++], { "left": -600 });
+
+            //    if (i >= ali.length / 2)
+            //    {
+            //        clearInterval(timer);
+            //        setTimeout(next, 500);
+            //    }
+            
+            //}, 100)
+            ////next()
+             
+
+            //function next()
+            //{
+                
+            //    timer = setInterval(function ()
+            //    {
+            //        startMove(ali[i], { "left": aLiPos[i - ali.length / 2] });
+                  
+            //        i++;
+            //        if (i >= ali.length)
+            //        {
+            //            clearInterval(timer);
+            //        }
+                    
+            //    }, 100)
+
+            //}
+            
+            var oSpan = this.parentNode.children[0];
+            startMove(oSpan, { left: this.offsetLeft + this.offsetWidth / 2 });
+            oNext.className = "";
+            oPrev.className = "show";
+            
         }
         oPrev.onclick = function ()
         {
-            alert("b");
+
+
+
+            var i = ali.length - 1;
+
+            clearInterval(timer);
+
+            timer = setTimeout(next, 100);
+
+            function next()
+            {
+                if (i >= ali.length / 2)
+                {
+                    startMove(ali[i], { "left": 1600 });
+                    i--;
+                    timer = setTimeout(next, 100);
+
+                } else
+                {
+                
+                    timer = setTimeout(next2, 100)
+                }
+
+            }
+            function next2()
+            {
+                if (i >= 0)
+                {
+                    startMove(ali[i], { "left": aLiPos[i] });
+                    timer = setTimeout(next2, 100);
+                }
+                i--;
+
+            }
+            next();
+            //clearInterval(timer);
+            //var i = ali.length-1;
+
+            //startMove(ali[i], { "left": 1600 });
+
+            //timer = setInterval(function ()
+            //{
+            //    if (i <ali.length / 2)
+            //    {
+            //        clearInterval(timer);
+            //        setTimeout(next, 100);
+            //    } else
+            //    {
+            //        startMove(ali[i--], { "left": 1600 });
+            //    }
+
+            //}, 100)
+           
+
+            //function next()
+            //{
+            //     timer = setInterval(function ()
+            //    {
+            //        if (i < 0)
+            //        {
+            //            clearInterval(timer);
+            //        } else
+            //        {
+            //            startMove(ali[i], { "left": aLiPos[i] });
+            //            i--;
+            //        }
+
+            //    }, 100)
+
+            //}
+            var oSpan = this.parentNode.children[0];
+            startMove(oSpan, { left: this.offsetLeft + Math.round(this.offsetWidth / 2) });
+            oNext.className = "show";
+            oPrev.className = "";
         }
     }
 
@@ -166,44 +299,7 @@ a{
 </div>
 <h2 class="miaov"><a href="http://www.miaov.com" target="_blank">妙味课堂　http://www.miaov.com</a></h2>
 
-    <style>
-        ul li { float:left; width:50px; border:1px solid #7F7F7F;margin:5px;}
-        ul li.active {border: 1px solid #b52f2f; }
-    </style>
-    <script>
-        window.onload = function ()
-        {
 
-            var kylin = document.getElementById("kylin");
-            var aLi = kylin.getElementsByTagName("li")
-
-            for (var i = 0; i < aLi.length; i++)
-            {
-
-                console.info(aLi[i].className);
-                if (aLi[i].className != "")
-                {
-                    aLi[i].onmouseover = function ()
-                    {
-
-                        this.className = "active";
-                    };
-
-                    aLi[i].onmouseout = function ()
-                    {
-                        this.className = "";
-                    };
-                }
-
-            }
-        }
-
-    </script>
-    <ul style=" margin:0 auto; width:300px; background:#7F7F7F" id="kylin">  
-        <li class="active">1</li>
-        <li>2</li>
-        <li>3</li>
-    </ul>
 
 
 </body>
