@@ -440,6 +440,11 @@
     <Content Include="Demo\事件委托\index.html" />
     <Content Include="Demo\妙味官网百叶窗代码\move.js" />
     <Content Include="Demo\妙味官网百叶窗代码\妙味官网百叶窗.html" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\1.jpg" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\2.jpg" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\3.jpg" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\demo1.html" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\move.js" />
     <Content Include="Demo\瀑布流\data.js" />
     <Content Include="Demo\瀑布流\img\1.jpg" />
     <Content Include="Demo\瀑布流\img\2.jpg" />
@@ -499,6 +504,7 @@
     <Content Include="Images\3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Demo\妙味课堂-视频问题解答-华为轮播图\妙味课堂-华为轮播图.rar" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

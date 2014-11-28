@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<style>
+*{ padding:0; margin:0;}
+li{ list-style:none;}
+#div1{ min-width:1000px; height:396px; position:relative; overflow:hidden;}
+#div1 ul{ position:absolute; left:0;}
+#div1 ul li{ float:left;}
+#div1 ul li img{ position:relative; left:0;}
+
+#btn{ position:absolute; width:100%; text-align:center; bottom:0;}
+#btn a{ cursor:pointer; display:inline-block; width:11px; height:11px; background:#666666;}
+#btn a.active { background:white;} 
+#btn a:hover{ background:white;}
+
+*html .ie6_out{ margin-left:1000px; zoom:1;}
+*html .ie6_in{ position:relative; float:left; margin-left:-1000px;}
+</style>
+<script type="text/javascript" src="move.js"></script>
+<script>
+
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	var oUl = oDiv.getElementsByTagName('ul')[0];
+	var aLi = oUl.getElementsByTagName('li');
+	var aImg = oUl.getElementsByTagName('img');
+	var oBtn = document.getElementById('btn');
+	var aA = oBtn.getElementsByTagName('a');
+	var imgWidth = 1920;
+	var iNow = 0;
+	var iNow2 = 0;
+
+	var timer = null;
+	changeSize();
+	oUl.style.width = aImg.length * 1920 + "px";
+	window.onresize = function ()
+	{
+	    changeSize()
+	}
+	function changeSize()
+	{
+	
+	    var viewWidth = document.documentElement.clientWidth;
+	    for (var i = 0; i < aImg.length; i++)
+	    {
+	        aImg[i].style.left = -(imgWidth - viewWidth) / 2 + "px";
+	    }
+	}
+
+	for (var i = 0; i < aA.length; i++)
+	{
+	    aA[i].index = i;
+	    aA[i].onclick = function ()
+	    {
+	        iNow = this.index;
+	        tab()
+	    }
+	}
+	function tab()
+	{
+	    for (var i = 0; i < aA.length; i++)
+	    {
+	        aA[i].className = "";
+	    }
+	    aA[iNow].className = "active";
+	    startMove(oUl, { left: -imgWidth * iNow });
+
+	}
+
+	autoPlay();
+
+	function autoPlay()
+	{
+	    timer = setInterval(function ()
+	    {
+	        if (iNow == aA.length)
+	        {
+	            iNow = 0;
+	        }
+	        tab()
+	        iNow++;
+
+
+	    }, 1000);
+	}
+
+	oDiv.onmouseout = function ()
+	{
+	    autoPlay();
+	}
+
+	oDiv.onmouseover = function ()
+	{
+	    clearInterval(timer);
+	}
+};
+
+</script>
+</head>
+<body>
+<!--[if lte IE 6]>
+<div class="ie6_out">
+<div class="ie6_in">
+<![endif]-->
+
+<div id="div1">
+	<ul>
+    	<li><img src="1.jpg" /></li>
+        <li><img src="2.jpg" /></li>
+        <li><img src="3.jpg" /></li>
+    </ul>
+    <div id="btn">
+    	<a href="javascript:;" class="active"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+    </div>
+</div>
+
+<!--[if lte IE 6]>
+</div>
+</div>
+<![endif]-->
+</body>
+</html>
