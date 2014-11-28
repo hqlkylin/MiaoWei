@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <script>
+        window.onload = function ()
+        {
+
+            var oUl = document.getElementById("u1");
+            var aLi = oUl.getElementsByTagName("li");
+
+            oUl.onmouseover = function (ev)
+            {
+                var ev = ev || window.event;
+                var oTarget = ev.srcElement || ev.target;
+                if (oTarget.nodeName.toLowerCase() == "li")
+                {
+                    oTarget.style.background = "#CCC";
+                }
+            }
+
+            oUl.onmouseout= function (ev)
+            {
+                var ev = ev || window.event;
+                var oTarget = ev.srcElement || ev.target;
+                if (oTarget.nodeName.toLowerCase() == "li")
+                {
+                    oTarget.style.background = "";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <ul id="u1">
+        <li>1111</li>
+        <li>2222</li>
+        <li>3333</li>
+        <li>4444</li>
+        <li>5555</li>
+    </ul>
+
+</body>
+</html>

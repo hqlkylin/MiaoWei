@@ -21,17 +21,12 @@ window.onload = function(){
     for (var i = 0; i < aLi.length; i++)
     {
         var num = i % 3;
-
-
-
         switch (num)
         {
             case 0:
                 aLi[i].style.left = "5px";
                 oLiHeight.l.push(aLi[i].offsetHeight);
-
                 var tem = i / 3;
-
                 if (!tem)
                 {
                     aLi[i].style.top = "0px"
@@ -41,13 +36,9 @@ window.onload = function(){
                     for (var j = 0; j < tem; j++)
                     {
                         top += oLiHeight.l[j];
-                   
                     }
-                    
                     aLi[i].style.top = top + "px"
                 }
-
-
                 break;
             case 1:
                 aLi[i].style.left = "240px";
