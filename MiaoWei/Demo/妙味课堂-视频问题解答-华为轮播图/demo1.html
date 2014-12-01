@@ -56,6 +56,7 @@ window.onload = function(){
 	    aA[i].onclick = function ()
 	    {
 	        iNow = this.index;
+	        iNow2 = iNow;
 	        tab()
 	    }
 	}
@@ -66,8 +67,18 @@ window.onload = function(){
 	        aA[i].className = "";
 	    }
 	    aA[iNow].className = "active";
-	    startMove(oUl, { left: -imgWidth * iNow });
+	  
+	    startMove(oUl, { left: -imgWidth * iNow2 }, function ()
+	    {
+	        if (iNow == 0)
+	        {
+	            aLi[0].style.position = "static";
+	            oUl.style.left = "0px";
+	            iNow2 = 0;
+	        }
 
+	    });
+	  
 	}
 
 	autoPlay();
@@ -76,20 +87,26 @@ window.onload = function(){
 	{
 	    timer = setInterval(function ()
 	    {
-	        if (iNow == aA.length)
+	        if (iNow == aA.length-1)
 	        {
+	            aLi[0].style.position = "relative";
+	            aLi[0].style.left = aLi.length * imgWidth + "px";
 	            iNow = 0;
+	           
+	        } else
+	        {
+	            iNow++;
 	        }
+	        iNow2++;
+	
 	        tab()
-	        iNow++;
 
-
-	    }, 1000);
+	    }, 2000);
 	}
 
 	oDiv.onmouseout = function ()
 	{
-	    autoPlay();
+	   autoPlay();
 	}
 
 	oDiv.onmouseover = function ()
@@ -108,7 +125,7 @@ window.onload = function(){
 
 <div id="div1">
 	<ul>
-    	<li><img src="1.jpg" /></li>
+    	<li ><img src="1.jpg" /></li>
         <li><img src="2.jpg" /></li>
         <li><img src="3.jpg" /></li>
     </ul>
