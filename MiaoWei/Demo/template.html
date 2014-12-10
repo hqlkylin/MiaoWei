@@ -92,6 +92,32 @@
     <input type="button" value="恢复页码" onclick=pagesetup_default()>
 
 
+    <div style="width: 100%; height: 200px; background: url(qq%e5%b9%bb%e7%81%af%e7%89%87/img/pic_10.jpg); background-size: 100% 100%; "></div>
 
+
+    <script>
+
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,16,17];
+
+        var aa = Math.ceil(arr.length / 4);
+
+
+        for (var i = 0; i < aa; i++)
+        {
+            console.info("tr");
+          
+            for (var j = 0; j <4 ; j++)
+            {
+                if(!arr[(i * 4) + j]){
+                    console.info("bbb");
+                    break;
+                }
+               console.info(arr[(i * 4) + j]);
+            }
+
+            console.info("tr");
+        }
+
+    </script>
 </body>
 </html>
