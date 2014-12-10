@@ -6,9 +6,9 @@
     <script src="../../Scripts/jquery-1.10.2.min.js"></script>
     <style>
         * { margin:0;padding:0;}
-        a { display:inline-block; width:100px; height:40px; border:1px solid #0094ff}
+        a { display:inline-block; width:100px; height:24px; border:1px solid #0094ff}
             a.active { border:#00ff21 1px solid;}
-        p { width: 300px; height: 300px; border: 1px solid #0094ff; display:none; }
+        p { width: 150px; height: 150px; border: 1px solid #0094ff; display:none; }
             p.active { display: block; }
     </style>
 
@@ -17,9 +17,20 @@
         {
             var t1 = new Tab("div1");
             t1.init({event:"mouseover"});
+            
+          
 
-            var t1 = new Tab("div2");
-            t1.init({});
+            var t2 = new Tab("div2");
+            t2.init({});
+
+            var t3 = new Tab("div3");
+            t3.init({ lazy: 400, event: "mouseover" });
+            t3.setIndex(1);
+
+            $("input").click(function () {
+                alert(t3.getContent()+"|"+t1.getContent());
+            })
+           
         })
 
         function Tab(obj)
@@ -27,31 +38,63 @@
             this.obj = $("#" + obj);
             this.aA = this.obj.find("a");
             this.aC = this.obj.find("p");
+            this.iNow = 0;
+            this.timer = null;
             this.setting = {//默认配置
-                event: "click"
+                event: "click",
+                lazy:0
             }
         }
         Tab.prototype.init = function (opt)
         {
             var that = this;
             $.extend(this.setting, opt);
-            this.aA.on(this.setting.event, function ()
-            {
-                that.change(this);
-            });
+
+            if (that.setting.event == "click" || !that.setting.lazy) {
+
+                this.aA.on(this.setting.event, function (){
+                    that.change(this);
+                });
+
+            } else {
+
+                this.aA.on(this.setting.event, function (){
+                    var _this = this;
+                    that.timer = setTimeout(function () {
+                        that.change(_this);
+                    }, that.setting.lazy)
+                }).on("mouseout", function () {
+                    clearTimeout(that.timer);
+                })
+            }
+           
         }
         Tab.prototype.change = function (obj)
         {
-   
-            this.aA.removeClass("active");
-            $(obj).addClass("active");
-            this.aC.removeClass("active");
-            this.aC.eq($(obj).index()).addClass("active");
+            this.iNow = $(obj).index();
+            this.show(this.iNow);
         }
+        Tab.prototype.show = function (index) {
+
+            this.aA.removeClass("active");
+            this.aA.eq(index).addClass("active");
+            this.aC.removeClass("active");
+            this.aC.eq(index).addClass("active");
+
+        }
+        Tab.prototype.setIndex = function (i) {
+            this.iNow = i;
+            this.show(this.iNow);
+        }
+        Tab.prototype.getContent = function () {
+
+            return this.aC.eq(this.iNow).html();
+        }
+       
     </script>
 </head>
 <body>
-
+    <input type="button" value="获取内容"/>
     <div id="div1">
         <a href="###" class="active">1</a>
         <a href="###">2</a>
@@ -62,6 +105,15 @@
     </div>
 
     <div id="div2">
+        <a href="###" class="active">1</a>
+        <a href="###">2</a>
+        <a href="###">3</a>
+        <p class="active">11111</p>
+        <p>22222</p>
+        <p>33333</p>
+    </div>
+
+    <div id="div3">
         <a href="###" class="active">1</a>
         <a href="###">2</a>
         <a href="###">3</a>
