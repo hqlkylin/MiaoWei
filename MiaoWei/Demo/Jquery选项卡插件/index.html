@@ -15,86 +15,145 @@
     <script>
         $(function ()
         {
-            var t1 = new Tab("div1");
-            t1.init({event:"mouseover"});
+            var t1 = new Tab();
+            t1.init("div1",{event:"mouseover"});
             
           
 
-            var t2 = new Tab("div2");
-            t2.init({});
+            var t2 = new Tab();
+            t2.init("div2",{});
 
-            var t3 = new Tab("div3");
-            t3.init({ lazy: 400, event: "mouseover" });
+            var t3 = new Tab();
+            t3.init("div3",{ lazy: 400, event: "mouseover" });
             t3.setIndex(1);
 
             $("input").click(function () {
                 alert(t3.getContent()+"|"+t1.getContent());
             })
+
+            var t0= new Tab();
+            t0.init("div0",{});
+
+            $(t0).on("Before", function ()
+            {
+                console.info(this.getContent());
+            })
+            
+            $(t0).on("After", function ()
+            {
+                console.info(this.getContent());
+            })
            
         })
-
-        function Tab(obj)
+    
+        function Tab()
         {
-            this.obj = $("#" + obj);
-            this.aA = this.obj.find("a");
-            this.aC = this.obj.find("p");
+            this.oParent = null;
+            this.aA = null;
+            this.aC = null;
             this.iNow = 0;
             this.timer = null;
-            this.setting = {//默认配置
+            this.settings = {//默认配置
                 event: "click",
                 lazy:0
             }
         }
-        Tab.prototype.init = function (opt)
+        Tab.prototype.init = function (oParent,opt)
         {
-            var that = this;
-            $.extend(this.setting, opt);
+            $.extend(this.settings, opt);
 
-            if (that.setting.event == "click" || !that.setting.lazy) {
+            this.oParent = $("#" + oParent);
+            this.aA = this.oParent.find("a");
+            this.aC = this.oParent.find("p");
 
-                this.aA.on(this.setting.event, function (){
-                    that.change(this);
-                });
-
-            } else {
-
-                this.aA.on(this.setting.event, function (){
-                    var _this = this;
-                    that.timer = setTimeout(function () {
-                        that.change(_this);
-                    }, that.setting.lazy)
-                }).on("mouseout", function () {
-                    clearTimeout(that.timer);
-                })
-            }
+            this.change();
            
         }
-        Tab.prototype.change = function (obj)
+        Tab.prototype.change = function ()
         {
-            this.iNow = $(obj).index();
-            this.show(this.iNow);
-        }
-        Tab.prototype.show = function (index) {
+          
+            var that = this;
+         
 
+                this.aA.on(this.settings.event, function ()
+                {
+                    $(that).trigger("Before");
+
+                    that.iNow = $(this).index();
+
+                    if (that.settings.event == "click" || !that.settings.lazy)
+                    {
+                        show(that.iNow)
+                    } else
+                    {
+
+                        that.timer = setTimeout(function ()
+                        {
+                            show(that.iNow)
+                             
+                        }, that.settings.lazy)
+                    }
+                
+                    $(that).trigger("After");
+
+                }).on("mouseout", function ()
+                {
+                    clearTimeout(that.timer);
+                });
+
+            function show(index)
+            {
+
+                that.aA.removeClass("active");
+                that.aA.eq(index).addClass("active");
+                that.aC.removeClass("active");
+                that.aC.eq(index).addClass("active");
+            }
+
+        }
+        //Tab.prototype.show = function (index) {
+
+        //    this.aA.removeClass("active");
+        //    this.aA.eq(index).addClass("active");
+        //    this.aC.removeClass("active");
+        //    this.aC.eq(index).addClass("active");
+
+        //}
+        Tab.prototype.setIndex = function (index)
+        {
+
+            this.iNow = index;
             this.aA.removeClass("active");
             this.aA.eq(index).addClass("active");
             this.aC.removeClass("active");
             this.aC.eq(index).addClass("active");
-
-        }
-        Tab.prototype.setIndex = function (i) {
-            this.iNow = i;
-            this.show(this.iNow);
         }
         Tab.prototype.getContent = function () {
 
             return this.aC.eq(this.iNow).html();
         }
+        //Tab.prototype.Before = function (event,fn)
+        //{
+        //    $(this).on(event, fn);
+        //}
+        //Tab.prototype.After = function (event, fn)
+        //{
+        //    $(this).on(event, fn);
+        //}
+
        
     </script>
 </head>
 <body>
     <input type="button" value="获取内容"/>
+    <div id="div0">
+        <a href="###" class="active">1</a>
+        <a href="###">2</a>
+        <a href="###">3</a>
+        <p class="active">11111</p>
+        <p>22222</p>
+        <p>33333</p>
+    </div>
     <div id="div1">
         <a href="###" class="active">1</a>
         <a href="###">2</a>
